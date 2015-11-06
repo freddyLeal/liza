@@ -1,0 +1,89 @@
+<ion-view view-title="Home" >
+  	<ion-content ng-controller="siteController">
+
+    	<div class="row">
+    	<div class="col col"> Income </div>
+	    	<div class="col col-75"> {{ financialReport.income | number:2}} </div>
+    	</div>
+    	<div class="row">
+    		<div class="col col"> Expense </div>
+	    	<div class="col col-75"> {{ financialReport.expense | number:2}} </div>
+    	</div>
+    	<div class="row">
+    		<div class="col col"> Available </div>
+	    	<div class="col col-75"> <b>{{ financialReport.available | number:2}}</b> </div>
+    	</div>
+
+    	<div class="button-bar">
+		  	<a class="button" ng-click="fromIncomes=true"  ng-class="{'button-positive': fromIncomes}">Reg. Incomes</a>
+		  	<a class="button" ng-click="fromIncomes=false" ng-class="{'button-positive': !fromIncomes}">Reg. Expenses</a>
+		</div>
+
+		<div ng-show="fromIncomes">
+			<div class="list">
+			  	<label class="col col-90" style="text-align:center;"> <b> {{ registerIncomes.income | number:2 }} &nbsp;</b> </label>
+			  	<label class="item item-input">
+			    	<span class="input-label">Income</span>
+			    	<input type="number" ng-model="registerIncomes.income">
+			  	</label>
+			  	<label class="item item-input">
+			    	<span class="input-label">Date</span>
+			    	<input type="date" ng-model="registerIncomes.date" value="{{registerIncomes.date}}">
+			  	</label>
+
+
+
+			  	<label class="item item-input item-select">
+				    <div class="input-label"> Income Type </div>
+				    <select ng-model="registerIncomes.type" >
+			    		<option value="{{income.ft_id}}" ng-repeat="income in financialTypes.incomes">{{income.ft_name}}</option>
+				    </select>
+				</label>
+			  	
+
+
+
+
+			  	<label class="item item-input">
+			    	<textarea placeholder="Note" ng-model="registerIncomes.note"></textarea>
+			  	</label>
+			  	<button class="button button-block button-positive" ng-click="registerIncome();">Save Income</button>			  	
+			  	<label class="col col-90" style="text-align:center;"> <b> {{ incomesMessage }} </b> </label>
+			</div>
+		</div>
+
+
+    	<div ng-show="!fromIncomes">
+    		<div class="list">
+    			<label class="col col-90" style="text-align:center;"> <b> {{ registerExpenses.expense | number:2 }} &nbsp;</b> </label>
+
+			  	<label class="item item-input">
+			    	<span class="input-label">Expense</span>
+			    	<input type="number" ng-model="registerExpenses.expense">
+			  	</label>
+			  	<label class="item item-input">
+			    	<span class="input-label">Date</span>
+			    	<input type="date" ng-model="registerExpenses.date" value="{{registerExpenses.date}}">
+			  	</label>
+			  	<label class="item item-input item-select">
+					<div class="input-label"> Expense Type </div>
+					<select ng-model="registerExpenses.type" >
+						<option value="{{expense.ft_id}}" ng-repeat="expense in financialTypes.expenses">{{expense.ft_name}}</option>
+					</select>
+				</label>
+			  	<label class="item item-input">
+			    	<textarea placeholder="Note" ng-model="registerExpenses.note"></textarea>
+			  	</label>
+			  	<button class="button button-block button-positive" ng-click="registerExpense();">Save Expense</button>		
+			  	<label class="col col-90" style="text-align:center;"> <b> {{ expensesMessage }} </b> </label>
+			</div>
+    	</div>
+    	
+    	<!-- <label>{{ "la variable nomber es: " + nombre}}</label>]] -->
+		<div data-ng-init="getFinancialTypes()"></div>
+    	<div data-ng-init="getFinancialReport()"></div>
+    	<!-- <button ng-click="getFinancialReport()" class="button button-block button-positive">get Financial Report</button> -->
+  	</ion-content>
+</ion-view>
+
+

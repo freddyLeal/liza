@@ -1,0 +1,9 @@
+<ion-view view-title="Edit" >
+  	
+    <ion-content ng-controller="siteController">
+  		{{test}}  		
+
+  		
+  		<div data-ng-init="getIncomesAndExpenses()"></div>
+  	</ion-content>
+</ion-view>

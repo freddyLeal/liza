@@ -1,0 +1,21 @@
+<ion-view view-title="Incomes and Expenses" >
+  	<ion-content ng-controller="siteController">
+
+  		<div class="list">
+  			  <div ng-repeat="incomeOrExpense in incomesAndExpenses | orderBy:['-date','+id']">
+      				<a class="item"  style="padding: 0px 0px 5px 10px; color:white;" 
+      				ng-class="{'custom-positive':incomeOrExpense.is_income, 'custom-assertive':!incomeOrExpense.is_income}"
+      				href="#/app/editIncomeOrExpense/{{incomeOrExpense.id}}/{{incomeOrExpense.is_income}}">
+      			    	<div class="row">
+        				    	<div class="col col-33">{{incomeOrExpense.value}}</div>
+          				    <div class="col col-33">{{incomeOrExpense.name}}</div>
+          				    <div class="col col-33">{{incomeOrExpense.date}}</div>
+        				  </div>
+      				    {{incomeOrExpense.note}}
+    			    </a>
+  			  </div>
+		</div>
+  	<div data-ng-init="getIncomesAndExpenses()"></div>
+  	</ion-content>
+</ion-view>
+
