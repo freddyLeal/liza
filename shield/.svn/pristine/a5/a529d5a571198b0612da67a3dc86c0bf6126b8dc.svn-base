@@ -1,8 +1,0 @@
-<ion-view view-title="Incomes and Expenses" >
-  	<ion-content ng-controller="siteController">
-
-  		
-
-
-  	</ion-content>
-</ion-view>
