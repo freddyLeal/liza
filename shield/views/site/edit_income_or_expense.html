@@ -1,0 +1,62 @@
+<ion-view view-title="Edit" ng-controller="siteController">
+
+	<div class="bar bar-subheader" >
+		<h2 class="title" ng-show="financialRegisterForEdit.isIncome">Income</h2>
+	  	<h2 class="title" ng-show="!financialRegisterForEdit.isIncome">Expense</h2>
+	</div>
+
+    <ion-content >
+    	<div>
+    		<div class="list">
+    			<br>
+    			<br>
+				<label class="col col-90" style="text-align:center;"> <b> {{ financialRegisterForEdit.value | number:2 }} &nbsp;</b> </label>
+
+			  	<label class="item item-input">
+			    	<span class="input-label">Value</span>
+			    	<input type="number" ng-model="financialRegisterForEdit.value" >
+			  	</label>
+			  	<label class="item item-input">
+			    	<span class="input-label">Date</span>
+			    	<input type="date" ng-model="financialRegisterForEdit.date" value="{{financialRegisterForEdit.date}}">
+			  	</label>
+
+
+
+			  	<label class="item item-input item-select" ng-show="!financialRegisterForEdit.isIncome">
+					<div class="input-label"> Type </div>
+					<select ng-model="financialRegisterForEdit.typeId" ng-options="value.ft_id as value.ft_name for value in financialTypes.expenses">
+					    <option>--</option>
+					</select>
+				</label>
+
+				<label class="item item-input item-select" ng-show="financialRegisterForEdit.isIncome">
+					<div class="input-label"> Type </div>
+					<select ng-model="financialRegisterForEdit.typeId" ng-options="value.ft_id as value.ft_name for value in financialTypes.incomes">
+					    <option>--</option>
+					</select>
+				</label>
+
+
+			  	<label class="item item-input">
+			    	<textarea placeholder="Note" ng-model="financialRegisterForEdit.note"></textarea>
+			  	</label>
+
+			  	<div class="button-bar">
+				  	<button class="button button-block button-positive" ng-click="editIncomeOrExpense();">Save</button>		
+				  	<button class="button button-block button-assertive" ng-click="deleteIncomeOrExpense();">Delete</button>		
+				</div>
+
+			  	
+			  	<label class="col col-90" style="text-align:center;"> <b> {{ editIncomeOrExpenseMessage }} </b> </label>
+			</div>
+    	</div>
+
+
+  		<div data-ng-init="getIncomeOrExpense()"></div>
+  		<div data-ng-init="initVarsgetIncomeOrExpense()"></div>
+
+
+  	</ion-content>
+</ion-view>
+
